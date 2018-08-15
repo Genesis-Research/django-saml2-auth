@@ -21,7 +21,7 @@ setup(
     description='Django SAML2 Authentication Made Easy. Easily integrate with SAML2 SSO identity providers like Okta',
     long_description=long_description,
 
-    url='https://github.com/fangli/django-saml2-auth',
+    url='https://github.com/Genesis-Research/django-saml2-auth',
 
     author='Fang Li',
     author_email='surivlee+djsaml2auth@gmail.com',
@@ -59,7 +59,8 @@ setup(
     keywords='Django SAML2 Authentication Made Easy, integrate with SAML2 SSO such as Okta easily',
 
     packages=find_packages(),
-    
-    install_requires=['git+git://github.com/Genesis-Research/pysaml2.git@master#egg=pysaml2'],
+
+    install_requires=['pysaml2'],
+    dependency_links=['git+ssh://git@github.com/Genesis-Research/pysaml2.git@master#egg=pysaml2'],
     include_package_data=True,
 )
