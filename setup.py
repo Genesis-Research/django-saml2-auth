@@ -59,7 +59,7 @@ setup(
     keywords='Django SAML2 Authentication Made Easy, integrate with SAML2 SSO such as Okta easily',
 
     packages=find_packages(),
-
-    install_requires=['pysaml2==4.5.0'],
+    
+    install_requires=['git+git://github.com/Genesis-Research/pysaml2.git@master#egg=pysaml2'],
     include_package_data=True,
 )
