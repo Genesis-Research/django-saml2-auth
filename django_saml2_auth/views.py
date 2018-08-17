@@ -22,6 +22,8 @@ from django.template import TemplateDoesNotExist
 from django.http import HttpResponseRedirect
 from django.utils.http import is_safe_url
 
+from rest_auth.utils import jwt_encode
+
 # change the user model to not be the django default, but the one that was custom made
 User = get_user_model()
 
@@ -182,9 +184,18 @@ def acs(r):
         try:
             return render(r, 'django_saml2_auth/welcome.html', {'user': r.user})
         except TemplateDoesNotExist:
-            return HttpResponseRedirect(next_url)
+            # We use JWT auth send token to frontend
+
+            jwt_token = jwt_encode(target_user)
+            query = '?uid={}&token={}'.format(target_user.id, jwt_token)
+
+            return HttpResponseRedirect(next_url+query)
     else:
-        return HttpResponseRedirect(next_url)
+        # We use JWT auth send token to frontend
+        jwt_token = jwt_encode(target_user)
+        query = '?uid={}&token={}'.format(target_user.id, jwt_token)
+
+        return HttpResponseRedirect(next_url+query)
 
 
 def signin(r):
